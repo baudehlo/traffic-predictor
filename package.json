@@ -1,0 +1,24 @@
+{
+  "name": "traffic-predictor",
+  "version": "0.0.1",
+  "description": "Predict Local Traffic 24 hours ahead using local events",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/baudehlo/traffic-predictor.git"
+  },
+  "author": "Matt Sergeant",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "7606694383562c521476afc531ae546654d7d6e8",
+  "dependencies": {
+    "request": "~2.25.0",
+    "cheerio": "~0.12.1",
+    "async": "~0.2.9",
+    "moment": "~2.1.0",
+    "simple-twitter": "~1.0.3"
+  }
+}
