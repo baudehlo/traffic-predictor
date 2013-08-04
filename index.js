@@ -131,6 +131,11 @@ function process_results (err, results) {
                  " in the evening the Gardiner will probably be " + 
                  fuckage[found];
     
+    if (process.env.NOTWEET) {
+        console.log(status);
+        return;
+    }
+
     var twit = new twitter(
         twitkeys.consumer_key,
         twitkeys.consumer_secret,
