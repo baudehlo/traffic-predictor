@@ -116,11 +116,17 @@ var fuckage = [
     'a fucking parking lot',
 ];
 
+var reasons = [
+    'Amp', 'Sky', 'ACC', 'BMO', 'FTY', 'CLO',
+];
+
 function process_results (err, results) {
     console.log("Results: ", results);
     var found = 0;
+    var reason = '';
     for (var i=0; i<results.length; i++) {
         if (results[i]) found++;
+        if (results[i]) reason += reasons[i] + ' '
     }
     
     if (found > 4) found = 4;
@@ -130,6 +136,10 @@ function process_results (err, results) {
     var status = "On " + tomorrow_format + 
                  " in the evening the Gardiner will probably be " + 
                  fuckage[found];
+    
+    if (reason.length) {
+        status += ' (' + reason.trim() + ')';
+    }
     
     if (process.env.NOTWEET) {
         console.log(status);
