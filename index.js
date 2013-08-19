@@ -15,6 +15,13 @@ var twitkeys = require('./twitterkeys');
  * Tweet or Email it
 */
 
+/* TODO
+ * Fetch road closures from http://www.toronto.ca/transportation/road_info/index.htm - hard to parse as some are partial closures
+ * Use weather as a heuristic
+*/
+
+var process_day = moment().add('days', 1);
+
 main();
 
 function main () {
@@ -27,11 +34,23 @@ function fetch_event_data () {
         fetch_skydome,
         fetch_acc,
         fetch_bmo_field,
-        // fetch_fort_york,
+        fetch_fort_york,
+        fetch_the_ex,
         // fetch_road_closures,
     ],
     process_results
     )
+}
+
+function fetch_the_ex (cb) {
+    var start = moment("Aug 16, 2013");
+    var end   = moment("Sep 2, 2013");
+
+
+    if (process_day > start && process_day <= end) {
+        return cb(null, "The Ex");
+    }
+    return cb();
 }
 
 function fetch_amphitheatre (cb) {
@@ -117,7 +136,7 @@ var fuckage = [
 ];
 
 var reasons = [
-    'Amp', 'Sky', 'ACC', 'BMO', 'FTY', 'CLO',
+    'Amp', 'Sky', 'ACC', 'BMO', 'FTY', 'Ex', 'CLO',
 ];
 
 function process_results (err, results) {
