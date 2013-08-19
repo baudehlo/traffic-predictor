@@ -56,7 +56,7 @@ function fetch_the_ex (cb) {
 function fetch_amphitheatre (cb) {
     var url = 'http://www.livenation.com/venues/14878/molson-canadian-amphitheatre';
     
-    var tomorrow_format = moment().add('days', 1).format('YYYY-MM-DD');
+    var tomorrow_format = process_day.format('YYYY-MM-DD');
     
     request.get(url, function (err, r, body) {
         if (err) {
@@ -86,7 +86,7 @@ function fetch_amphitheatre (cb) {
 function fetch_ticketmaster (venue_id, cb) {
     var url = 'http://www.ticketmaster.ca/json/search/event?vid=' + venue_id;
     
-    var tomorrow_format = moment().add('days', 1).format('YYYY-MM-DD');
+    var tomorrow_format = process_day.format('YYYY-MM-DD');
     
     request.get(url, {json: true}, function (err, r, data) {
         if (err) {
@@ -150,7 +150,7 @@ function process_results (err, results) {
     
     if (found > 4) found = 4;
     
-    var tomorrow_format = moment().add('days', 1).format('ddd, MMM Do');
+    var tomorrow_format = process_day.format('ddd, MMM Do');
     
     var status = "On " + tomorrow_format + 
                  " in the evening the Gardiner will probably be " + 
