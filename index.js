@@ -64,7 +64,7 @@ function fetch_amphitheatre (cb) {
     })
 }
 
-function fetch_ticketmaster (venue_id, cb) {
+function fetch_ticketmaster (venue_id, cb, logit) {
     var url = 'http://www.ticketmaster.ca/json/search/event?vid=' + venue_id;
     
     var tomorrow_format = moment().add('days', 1).format('YYYY-MM-DD');
@@ -73,11 +73,11 @@ function fetch_ticketmaster (venue_id, cb) {
         if (err) {
             return cb("Error fetching ticketmaster venue: " + venue_id + ": " + err);
         }
-        // console.log(data.response.docs);
+        if (logit) console.log(data.response.docs);
         var events = data.response.docs;
         var show = null;
         for (var i=0; i<events.length; i++) {
-            if (events[i].EventDate.indexOf(tomorrow_format) != -1) {
+            if (events[i].PostProcessedData.LocalEventDate.indexOf(tomorrow_format) != -1) {
                 show = events[i].EventName;
                 break;
             }
@@ -109,9 +109,9 @@ function fetch_road_closures (cb) {
 }
 
 var fuckage = [
-    'probably fine',
-    'a bit shitty',
-    'shitty',
+    'as bad as always',
+    'worse than usual',
+    'quite shitty',
     'fucking awful',
     'a fucking parking lot',
 ];
